@@ -1,0 +1,42 @@
+def determinant(matrix):
+    #This function finds the determinant of an n x n array
+    
+    import numpy as np
+    
+    #Transform list object into array object using numpy
+    arr = np.array(matrix)
+    
+    #Getting the size of the n x n array
+    n = len(arr)
+    
+    #Check if the matrix is 1 x 1 and return simple solution
+    if n == 1:
+        return arr[0,0]
+    
+    #Check if the matrix is 2 x 2 and return simple solution
+    elif n == 2:
+        return arr[0][0]*arr[1][1] - ( arr[0][1]*arr[1][0] )
+    
+    #Matrix is larger than 2x2, therefore it must be broken down recursively into smaller n-1 x n-1 matrices until it can be solved using the 2 x 2 solution.
+    else:
+    
+        #Base value to add our sub determinants to using the equation M = a*det(a_minor) - b*det(b_minor) + ... n*det(n_minor)
+        M = 0
+        
+        #Loop through each element in the top row, creating smaller matrices by removing the row and column that the element is in
+        for element in range(0,n):
+        
+            new_arr = np.delete(np.delete(arr,0,0), element,1)
+            
+            #Calculate the sub determinant 
+            det = arr[0, element] * determinant(new_arr)
+            
+            #Since the equation alternates between adding and subtracting the sub determinants, begin by adding and alternate based on whether the element index is even or odd.
+            if (element % 2) == 0:
+                M += det
+            
+            else:
+                M -= det
+    
+    #Return the final determinant of the n x n matrix that is greater than 2 x 2
+    return M
