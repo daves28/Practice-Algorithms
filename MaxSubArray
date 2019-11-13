@@ -1,0 +1,31 @@
+def maxSequence(arr):
+    '''
+    This function takes a list or array of numbers and finds the largest sum of consecutive numbers within the array by testing subarrays
+    of different sizes and positions.
+    '''
+	  
+    #Find total length of the list/array
+    if len(arr) == 0:
+        return 0
+    
+    #Inital max of 0
+    max = 0 
+    
+    #Iterate each possible size of subarray beginning at each point in the array.
+    for sub_size in range(1,len(arr)):
+        
+        for sub_pos in range(0,len(arr)):
+            
+            s = sum(arr[sub_pos:sub_size+sub_pos])
+            
+            #Uncomment the print statement to see the iteration printed
+            #print(f"Testing subarray size {sub_size} beginning at position {sub_pos}. The sum is {s}")
+            
+            #If the newly found sum of the subarray is greater than our current highest sum, it becomes our new max.
+            if s > max:
+            
+                #Uncomment the print statement to see the iteration printed.
+                #print(f"Current sum {s} is greater than current max {max}")
+                max = s
+    
+    return max
