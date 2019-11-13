@@ -1,0 +1,8 @@
+def song_decoder(song):
+
+    '''
+    Takes a string of words surrounded randomly by 'WUB', removes each 'WUB' and returns just the words to find the lyrics of the song.
+    For example, 'WUBIWUBWUBAMWUBHAPPYWUBWUB' would return 'I AM HAPPY'
+    '''
+    
+    return ' '.join(filter(None,song.split('WUB')))
