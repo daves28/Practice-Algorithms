@@ -1,0 +1,33 @@
+def solution(string,markers):
+    '''
+    Strips out the characters in a string that occur after a comment character such as #, ", $, @ and others.
+    The function takes in a string and a list of markers to use as comment characters.
+    Returns the string without the valid comment characters and the text that occurs after it on the same line.
+    
+    For example, given a string input of "apples, pears # bananas\nmangos, oranges @apples" and a marker list input of ['#','@'],
+    the function would return "apples, pears\nmangos, oranges"
+    '''
+    
+    import re
+    
+    #Split string into list at each \n
+    sp = string.split('\n')
+    
+    #Take marker terms and add regex syntax to search for the marker + additional characters on that line
+    for marker in range(0,len(markers)):
+        
+            markers[marker] = "\ ".strip() + markers[marker] + ".*"
+
+    #Iterating from 0 to the length of the list created by the split string    
+    for term in range(0,len(sp)):
+        
+        #Checking to see if the marker the user has given us is a comment character.
+        for marker in markers:
+            if (marker == '\\".*') or (marker == "\\§.*") or (marker == "\\#.*") or marker == ("\\!.*") or (marker == "\\$.*") or (marker == "\\@.*") or (marker == "\\*.*"):
+                
+                #Removing the characters and whitespace
+                sp[term] = re.sub(marker,"",sp[term].strip())
+                sp[term] = sp[term].strip()
+                
+    #Rejoin the new list into our final string, adding \n back in where it was initially removed.        
+    return '\n'.join(sp)
