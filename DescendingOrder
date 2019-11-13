@@ -1,0 +1,37 @@
+def Descending_Order(num):
+    #Takes in a number and reorders the integers in descending order to create the largest possible number.
+    
+    #Establish an empty list which will be used for ordering the integers one by one.
+    new_num_list = []
+    
+    #Create a string from the inputted number in order to iterate through it.
+    string_num = str(num)
+    
+    #Iterating through each integer in the number to compare it to existing values in the list, and inserting it accordingly.
+    for i in string_num:
+    
+        #First checking to see if the list is empty. If it is, we just insert the first integer into the list.
+        if len(new_num_list) == 0:
+            new_num_list.append(i)
+    
+        #Checking that our list length is now greater than one.
+        elif len(new_num_list) > 0:
+            
+            #This while loop is used to take each integer and compare it iterively to the integers already in order in the list.
+            j = 0
+            while int(i) < int(new_num_list[j]):
+    
+                j += 1
+    
+                #This is checking that our index variable j is not greater than the indexable length of our list. This is to prevent an indexing out of range error.
+                if j > (len(new_num_list) - 1):
+                    break
+            
+            #Once the while loop has completed, insert the integer i where our loop index variable j ended up. 
+            new_num_list.insert(j, i)
+    
+    #Convert the list back into a string, and then from a string back to an integer.
+    new_num_str = ''.join(x for x in new_num_list)
+    new_num = int(new_num_str)
+    
+    return new_num
