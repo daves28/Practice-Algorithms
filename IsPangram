@@ -1,0 +1,12 @@
+import string
+
+def ispangram(str1, alphabet=string.ascii_lowercase):
+    
+    str2 = str1.lower()
+    str2 = str2.replace(' ','')
+    lst = list(str2)
+    
+    for x in str2:
+        alphabet = alphabet.replace(x,'')
+        #print(alphabet)
+    return len(alphabet)==0
