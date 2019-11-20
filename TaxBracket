@@ -1,0 +1,18 @@
+tax_bracket = {10000:0, 30000:0.1, 100000: 0.25, '--':0.4}
+
+bracketCap30 = 20000*tax_bracket[30000]
+bracketCap100 = 70000*tax_bracket[100000]
+
+def marginalTax(income):
+
+	if income < 10000:
+		return 0
+
+	elif income > 10000 and < 30000:
+		return (income-10000)*tax_bracket[30000]
+
+	elif income > 30000 and < 100000
+		return (income-30000)*tax_bracket[100000]+bracketCap30)
+
+	elif income > 100000
+		return (income-100000)*tax_bracket['--'] + bracketCap30 + bracketCap100
